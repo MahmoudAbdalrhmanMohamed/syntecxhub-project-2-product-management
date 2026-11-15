@@ -202,7 +202,7 @@ const statusLabel = (status: string) => {
             class="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors"
             :class="
               productsStore.viewMode === 'table'
-                ? 'bg-sky-600 text-white'
+                ? 'bg-emerald-600 text-white shadow-sm'
                 : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             "
             @click="productsStore.viewMode = 'table'"
@@ -215,7 +215,7 @@ const statusLabel = (status: string) => {
             class="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors"
             :class="
               productsStore.viewMode === 'grid'
-                ? 'bg-sky-600 text-white'
+                ? 'bg-emerald-600 text-white shadow-sm'
                 : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             "
             @click="productsStore.viewMode = 'grid'"
@@ -391,7 +391,7 @@ const statusLabel = (status: string) => {
                   <div class="min-w-0">
                     <button
                       type="button"
-                      class="font-semibold text-slate-900 dark:text-slate-100 hover:text-sky-500 text-left truncate block"
+                      class="font-semibold text-slate-900 dark:text-slate-100 hover:text-emerald-500 text-left truncate block font-mono"
                       @click="inspectedProduct = product"
                     >
                       {{ product.name }}
@@ -481,7 +481,7 @@ const statusLabel = (status: string) => {
         <div
           v-for="product in productsStore.items"
           :key="product._id"
-          class="surface-card overflow-hidden flex flex-col justify-between group hover:border-sky-500/40 transition-colors"
+          class="surface-card overflow-hidden flex flex-col justify-between group hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-950/20 transition-all"
         >
           <div>
             <div class="relative aspect-16/10 w-full overflow-hidden bg-slate-900 border-b border-slate-200 dark:border-slate-800">
@@ -507,10 +507,10 @@ const statusLabel = (status: string) => {
 
             <div class="p-4">
               <div class="flex items-center justify-between text-[11px] font-mono text-slate-400">
-                <span>{{ product.sku }}</span>
+                <span class="text-emerald-500 font-bold">{{ product.sku }}</span>
                 <span>{{ product.category }}</span>
               </div>
-              <h3 class="mt-1.5 text-sm font-bold text-slate-900 dark:text-white line-clamp-1">
+              <h3 class="mt-1.5 text-sm font-bold text-slate-900 dark:text-white line-clamp-1 font-mono">
                 {{ product.name }}
               </h3>
               <p class="mt-1 text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
@@ -521,18 +521,18 @@ const statusLabel = (status: string) => {
 
           <div class="border-t border-slate-200 dark:border-slate-800 px-4 py-3 flex items-center justify-between">
             <div>
-              <p class="font-mono text-base font-bold text-slate-900 dark:text-white">
+              <p class="font-mono text-base font-bold text-emerald-500 dark:text-emerald-400">
                 {{ formatCurrency(product.price) }}
               </p>
-              <p class="text-[11px] text-slate-500">
-                {{ product.stockQuantity }} units available
+              <p class="text-[11px] text-slate-500 font-mono">
+                {{ product.stockQuantity }} units in stock
               </p>
             </div>
 
             <div class="flex items-center gap-1">
               <button
                 type="button"
-                class="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-sky-500"
+                class="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-emerald-500"
                 @click="inspectedProduct = product"
               >
                 <Eye class="h-4 w-4" />
