@@ -6,9 +6,9 @@
   "description": "Syntecxhub Project 2 \u2014 Product & SKU Inventory Management - Nuxt 4 SSR Frontend",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --port 3000",
+    "dev": "nuxt dev --port 3002",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
+    "preview": "nuxt preview --port 3002",
     "postinstall": "nuxt prepare",
     "typecheck": "nuxt typecheck",
     "lint": "eslint .",
