@@ -248,32 +248,32 @@ const statusLabel = (status: string) => {
           />
         </div>
 
-        <select
+        <UiCustomSelect
           v-model="productsStore.filters.category"
-          class="input-field"
+          :options="[
+            { label: 'All Categories', value: '' },
+            ...productsStore.categories.map((c) => ({ label: c, value: c })),
+          ]"
+          placeholder="All Categories"
+          theme="emerald"
+          class="w-full sm:w-48"
           @change="handleFilterChange"
-        >
-          <option value="">All Categories</option>
-          <option
-            v-for="cat in productsStore.categories"
-            :key="cat"
-            :value="cat"
-          >
-            {{ cat }}
-          </option>
-        </select>
+        />
 
-        <select
+        <UiCustomSelect
           v-model="productsStore.filters.status"
-          class="input-field"
+          :options="[
+            { label: 'All Stock Statuses', value: '' },
+            { label: 'In Stock', value: 'in_stock' },
+            { label: 'Low Stock', value: 'low_stock' },
+            { label: 'Out of Stock', value: 'out_of_stock' },
+            { label: 'Archived', value: 'archived' },
+          ]"
+          placeholder="All Stock Statuses"
+          theme="emerald"
+          class="w-full sm:w-48"
           @change="handleFilterChange"
-        >
-          <option value="">All Stock Statuses</option>
-          <option value="in_stock">In Stock</option>
-          <option value="low_stock">Low Stock</option>
-          <option value="out_of_stock">Out of Stock</option>
-          <option value="archived">Archived</option>
-        </select>
+        />
 
         <div class="flex items-center gap-2">
           <input
@@ -295,16 +295,18 @@ const statusLabel = (status: string) => {
         </div>
 
         <div class="flex items-center gap-2">
-          <select
+          <UiCustomSelect
             v-model="productsStore.filters.sortBy"
-            class="input-field"
+            :options="[
+              { label: 'Newest First', value: 'createdAt' },
+              { label: 'Price', value: 'price' },
+              { label: 'Stock Units', value: 'stockQuantity' },
+              { label: 'Name', value: 'name' },
+            ]"
+            theme="emerald"
+            class="w-full sm:w-44"
             @change="handleFilterChange"
-          >
-            <option value="createdAt">Newest First</option>
-            <option value="price">Price</option>
-            <option value="stockQuantity">Stock Units</option>
-            <option value="name">Name</option>
-          </select>
+          />
           <button
             type="button"
             class="btn-secondary shrink-0 px-2.5"
@@ -624,15 +626,12 @@ const statusLabel = (status: string) => {
                 <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   Category *
                 </label>
-                <select v-model="formState.category" class="input-field">
-                  <option
-                    v-for="c in productsStore.categories"
-                    :key="c"
-                    :value="c"
-                  >
-                    {{ c }}
-                  </option>
-                </select>
+                <UiCustomSelect
+                  v-model="formState.category"
+                  :options="productsStore.categories.map((c) => ({ label: c, value: c }))"
+                  placeholder="Select Category"
+                  theme="emerald"
+                />
               </div>
 
               <div>

@@ -6,7 +6,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex items-center gap-3">
+  <div class="flex items-center" :class="showText ? 'gap-3' : ''">
     <!-- Isometric Nexus Emblem -->
     <div
       class="relative shrink-0 flex items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/20 via-emerald-950/40 to-slate-950 border border-emerald-500/40 shadow-lg shadow-emerald-500/20 overflow-hidden"
