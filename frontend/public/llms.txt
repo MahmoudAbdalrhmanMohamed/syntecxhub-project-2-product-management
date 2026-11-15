@@ -1,0 +1,23 @@
+# Syntecxhub Inventory
+
+> Hardware Catalog & Global SKU Telemetry platform.
+
+## Overview
+Syntecxhub Inventory is an enterprise stock governance and telemetry platform engineered with Nuxt 4 (SSR Nitro) and NestJS (Mongoose/MongoDB). It delivers real-time SKU tracking, catalog valuation, warehouse bin management, and equipment health metrics.
+
+## Core Capabilities
+- **SKU Catalog & Inventory**: Real-time product search, filtering, and categorization across hardware appliances and SaaS software licenses.
+- **Stock Valuation Matrix**: Automated real-time valuation calculated by quantity, unit cost, and warehouse node allocation.
+- **Warehouse Node Telemetry**: Monitoring storage bins, stock threshold alerts, and reorder levels.
+- **OpenAPI Architecture**: Standardized RESTful endpoints documented via Swagger / OpenAPI at `/api-docs`.
+
+## Key URLs
+- Homepage / Dashboard: https://inventory.syntecxhub.com/
+- Products Catalog: https://inventory.syntecxhub.com/products
+- System Preferences: https://inventory.syntecxhub.com/settings
+- OpenAPI Explorer: https://inventory.syntecxhub.com/api-docs
+
+## Technical Stack
+- Frontend: Nuxt 4.6, Vue 3.5, Tailwind CSS, Pinia
+- Backend: NestJS 11, MongoDB 8, TypeScript
+- Data Models: Product documents with SKU, pricing, stock levels, and category tags

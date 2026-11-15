@@ -1,0 +1,41 @@
+# ==============================================================================
+# Syntecxhub Inventory — Robots Configuration
+# Technical SEO & Generative Engine Optimization (GEO) Directives
+# ==============================================================================
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_nuxt/
+
+# Sitemaps for Search Engines
+Sitemap: https://inventory.syntecxhub.com/sitemap.xml
+Sitemap: https://syntecxhub-inventory.vercel.app/sitemap.xml
+
+# LLM & Generative Engine Crawlers (Explicitly Allowed for GEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# LLM Documentation Schema
+# See /llms.txt for machine-readable platform overview

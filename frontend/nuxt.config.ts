@@ -77,9 +77,41 @@ export default defineNuxtConfig({
           content:
             'Syntecxhub Inventory — High-Tech Hardware Inventory, SKU Telemetry, and Cloud Appliance Management.',
         },
+        { name: 'keywords', content: 'SKU Nexus, Hardware Inventory, Stock Management, Asset Tracking, Telemetry Catalog, Enterprise Stock Valuation, NestJS Inventory, Nuxt 4' },
+        { name: 'author', content: 'Syntecxhub Enterprise' },
+        { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
         { name: 'theme-color', content: '#070D14' },
+
+        // Google Search Console & Webmaster Verification
+        { name: 'google-site-verification', content: process.env.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'syntecxhub-inventory-gsc-verification-token' },
+        { name: 'msvalidate.01', content: process.env.NUXT_PUBLIC_BING_SITE_VERIFICATION || 'syntecxhub-inventory-bing-verification-token' },
+        { name: 'yandex-verification', content: process.env.NUXT_PUBLIC_YANDEX_SITE_VERIFICATION || 'syntecxhub-inventory-yandex-verification-token' },
+
+        // Geographic (GEO) Meta Tags
+        { name: 'geo.region', content: 'US-CA' },
+        { name: 'geo.placename', content: 'San Francisco' },
+        { name: 'geo.position', content: '37.7749;-122.4194' },
+        { name: 'ICBM', content: '37.7749, -122.4194' },
+
+        // OpenGraph (SEO / Social)
+        { property: 'og:type', content: 'website' },
+        { property: 'og:site_name', content: 'Syntecxhub Inventory' },
+        { property: 'og:title', content: 'Syntecxhub Inventory — Hardware Catalog & Global SKU Telemetry' },
+        { property: 'og:description', content: 'Real-time hardware inventory, stock valuation matrices, warehouse telemetry, and OpenAPI integration.' },
+        { property: 'og:url', content: 'https://inventory.syntecxhub.com/' },
+        { property: 'og:image', content: 'https://inventory.syntecxhub.com/favicon.svg' },
+        { property: 'og:locale', content: 'en_US' },
+
+        // Twitter Card (SEO / Social)
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:site', content: '@syntecxhub' },
+        { name: 'twitter:creator', content: '@syntecxhub' },
+        { name: 'twitter:title', content: 'Syntecxhub Inventory — Hardware & SKU Telemetry' },
+        { name: 'twitter:description', content: 'Enterprise hardware inventory, stock valuation, and warehouse telemetry.' },
+        { name: 'twitter:image', content: 'https://inventory.syntecxhub.com/favicon.svg' },
       ],
       link: [
+        { rel: 'canonical', href: 'https://inventory.syntecxhub.com/' },
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'alternate icon', href: '/favicon.ico' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
