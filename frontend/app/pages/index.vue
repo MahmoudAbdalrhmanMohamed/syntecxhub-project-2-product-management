@@ -57,51 +57,105 @@ await useAsyncData('project2-dashboard', async () => {
       </div>
     </div>
 
-    <!-- Inventory KPIs -->
+    <!-- Inventory KPIs (Telemetry HUD Format) -->
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
-      <div class="surface-card p-5 group">
+      <div class="surface-card p-5 group border border-emerald-950/70 bg-[#0A121A] relative overflow-hidden">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Catalog SKUs</span>
-          <div class="h-9 w-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+          <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400">Total Catalog SKUs</span>
+          <div class="h-9 w-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
             <Boxes class="h-4 w-4" />
           </div>
         </div>
-        <p class="mt-3 text-3xl font-extrabold font-mono text-slate-900 dark:text-white tracking-tight">
+        <p class="mt-3 text-3xl font-extrabold font-mono text-white tracking-tight">
           {{ dashboardStore.stats?.summary.totalProducts ?? 0 }}
         </p>
-        <p class="mt-1 text-xs text-emerald-600 dark:text-emerald-400 font-mono flex items-center gap-1">
-          <Sparkles class="h-3 w-3" /> Active Infrastructure SKUs
-        </p>
+        <div class="mt-2 flex items-center justify-between text-xs font-mono text-emerald-400">
+          <span class="flex items-center gap-1"><Sparkles class="h-3 w-3" /> Active SKUs</span>
+          <span class="text-slate-500">ZONE: ALL</span>
+        </div>
       </div>
 
-      <div class="surface-card p-5 group">
+      <div class="surface-card p-5 group border border-emerald-950/70 bg-[#0A121A] relative overflow-hidden">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Inventory Valuation</span>
-          <div class="h-9 w-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+          <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400">Inventory Valuation</span>
+          <div class="h-9 w-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
             <DollarSign class="h-4 w-4" />
           </div>
         </div>
-        <p class="mt-3 text-3xl font-extrabold font-mono text-emerald-600 dark:text-emerald-400 tracking-tight">
+        <p class="mt-3 text-3xl font-extrabold font-mono text-emerald-400 tracking-tight">
           {{ formatCurrency(dashboardStore.stats?.summary.totalInventoryValue) }}
         </p>
-        <p class="mt-1 text-xs text-emerald-600/80 font-mono">
-          Capital Assets Invested
-        </p>
+        <div class="mt-2 flex items-center justify-between text-xs font-mono">
+          <span class="text-emerald-400/80">Capital Assets</span>
+          <span class="text-slate-500">INDEX: USD</span>
+        </div>
       </div>
 
-      <div class="surface-card p-5 group">
+      <div class="surface-card p-5 group border border-amber-950/60 bg-[#0A121A] relative overflow-hidden">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Low Stock Reorder Alerts</span>
-          <div class="h-9 w-9 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-600 dark:text-amber-400">
+          <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400">Reorder Threshold Alerts</span>
+          <div class="h-9 w-9 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
             <AlertTriangle class="h-4 w-4" />
           </div>
         </div>
-        <p class="mt-3 text-3xl font-extrabold font-mono text-amber-500 tracking-tight">
+        <p class="mt-3 text-3xl font-extrabold font-mono text-amber-400 tracking-tight">
           {{ dashboardStore.stats?.summary.lowStockCount ?? 0 }}
         </p>
-        <p class="mt-1 text-xs text-amber-500/80 font-mono">
-          Below Minimum Buffer
-        </p>
+        <div class="mt-2 flex items-center justify-between text-xs font-mono text-amber-400/80">
+          <span>Critical Stock Units</span>
+          <span class="text-amber-500 font-bold">ACTION REQ</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Warehouse Storage Zone HUD Allocation Matrix -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="rounded-xl border border-emerald-950/80 bg-[#0A121A] p-4 space-y-3 font-mono">
+        <div class="flex items-center justify-between text-xs border-b border-emerald-950/60 pb-2">
+          <span class="text-slate-300 font-bold flex items-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-emerald-400"></span> ZONE A: COMPUTE BLADES
+          </span>
+          <span class="text-emerald-400">92% CAP</span>
+        </div>
+        <div class="h-2 bg-slate-900 rounded-full overflow-hidden border border-emerald-950/60">
+          <div class="h-full bg-emerald-400 rounded-full w-[92%]"></div>
+        </div>
+        <div class="flex justify-between text-[11px] text-slate-400">
+          <span>Racks: 01 to 08</span>
+          <span class="text-slate-200 font-bold">384 Units</span>
+        </div>
+      </div>
+
+      <div class="rounded-xl border border-emerald-950/80 bg-[#0A121A] p-4 space-y-3 font-mono">
+        <div class="flex items-center justify-between text-xs border-b border-emerald-950/60 pb-2">
+          <span class="text-slate-300 font-bold flex items-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-teal-400"></span> ZONE B: STORAGE PODS
+          </span>
+          <span class="text-teal-400">76% CAP</span>
+        </div>
+        <div class="h-2 bg-slate-900 rounded-full overflow-hidden border border-emerald-950/60">
+          <div class="h-full bg-teal-400 rounded-full w-[76%]"></div>
+        </div>
+        <div class="flex justify-between text-[11px] text-slate-400">
+          <span>Racks: 09 to 16</span>
+          <span class="text-slate-200 font-bold">512 Units</span>
+        </div>
+      </div>
+
+      <div class="rounded-xl border border-emerald-950/80 bg-[#0A121A] p-4 space-y-3 font-mono">
+        <div class="flex items-center justify-between text-xs border-b border-emerald-950/60 pb-2">
+          <span class="text-slate-300 font-bold flex items-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-cyan-400"></span> ZONE C: HSM VAULTS
+          </span>
+          <span class="text-cyan-400">64% CAP</span>
+        </div>
+        <div class="h-2 bg-slate-900 rounded-full overflow-hidden border border-emerald-950/60">
+          <div class="h-full bg-cyan-400 rounded-full w-[64%]"></div>
+        </div>
+        <div class="flex justify-between text-[11px] text-slate-400">
+          <span>Racks: 17 to 24</span>
+          <span class="text-slate-200 font-bold">128 Units</span>
+        </div>
       </div>
     </div>
 

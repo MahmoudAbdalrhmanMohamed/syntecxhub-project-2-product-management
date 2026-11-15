@@ -477,29 +477,36 @@ const statusLabel = (status: string) => {
       <UiPaginationBar :meta="productsStore.meta" @change="handlePageChange" />
     </div>
 
-    <!-- GRID / CARD VIEW -->
+    <!-- GRID / CARD VIEW (INDUSTRIAL TELEMETRY HUD) -->
     <div v-else class="space-y-4">
       <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         <div
           v-for="product in productsStore.items"
           :key="product._id"
-          class="surface-card overflow-hidden flex flex-col justify-between group hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-950/20 transition-all"
+          class="surface-card overflow-hidden flex flex-col justify-between group hover:border-emerald-500/60 hover:shadow-xl hover:shadow-emerald-950/30 transition-all border border-emerald-950/60 bg-[#0A121A]/80 relative"
         >
+          <!-- Corner Technical Decal -->
+          <div class="absolute top-0 right-0 w-8 h-8 pointer-events-none overflow-hidden">
+            <div class="absolute transform rotate-45 bg-emerald-500/20 text-[8px] font-mono font-bold text-emerald-400 py-0.5 right-[-35px] top-[14px] w-[100px] text-center border-b border-emerald-500/30">
+              HUD
+            </div>
+          </div>
+
           <div>
-            <div class="relative aspect-16/10 w-full overflow-hidden bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+            <div class="relative aspect-16/10 w-full overflow-hidden bg-slate-950 border-b border-emerald-950/70">
               <img
                 :src="resolveAssetUrl(product.image)"
                 :alt="product.name"
-                class="h-full w-full object-cover group-hover:scale-102 transition-transform duration-300"
+                class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
               <span
-                class="absolute top-3 right-3 rounded-full px-2.5 py-0.5 text-[11px] font-semibold backdrop-blur-md"
+                class="absolute top-2.5 left-2.5 rounded px-2 py-0.5 text-[10px] font-mono font-bold backdrop-blur-md uppercase tracking-wider"
                 :class="{
-                  'bg-emerald-950/80 text-emerald-300 border border-emerald-500/30':
+                  'bg-emerald-950/90 text-emerald-300 border border-emerald-500/40':
                     product.status === 'in_stock',
-                  'bg-amber-950/80 text-amber-300 border border-amber-500/30':
+                  'bg-amber-950/90 text-amber-300 border border-amber-500/40':
                     product.status === 'low_stock',
-                  'bg-rose-950/80 text-rose-300 border border-rose-500/30':
+                  'bg-rose-950/90 text-rose-300 border border-rose-500/40':
                     product.status === 'out_of_stock',
                 }"
               >
@@ -507,48 +514,68 @@ const statusLabel = (status: string) => {
               </span>
             </div>
 
-            <div class="p-4">
+            <div class="p-4 space-y-2.5">
               <div class="flex items-center justify-between text-[11px] font-mono text-slate-400">
-                <span class="text-emerald-500 font-bold">{{ product.sku }}</span>
-                <span>{{ product.category }}</span>
+                <span class="text-emerald-400 font-bold tracking-wider flex items-center gap-1">
+                  <span class="text-slate-600">|||</span> {{ product.sku }}
+                </span>
+                <span class="px-1.5 py-0.5 rounded bg-emerald-950/60 text-emerald-300 text-[10px] border border-emerald-900/40 font-mono">{{ product.category }}</span>
               </div>
-              <h3 class="mt-1.5 text-sm font-bold text-slate-900 dark:text-white line-clamp-1 font-mono">
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white line-clamp-1 font-mono tracking-tight">
                 {{ product.name }}
               </h3>
-              <p class="mt-1 text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
+              <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
                 {{ product.description }}
               </p>
+
+              <!-- Stock Level Gauge Bar -->
+              <div class="pt-1.5 space-y-1">
+                <div class="flex items-center justify-between text-[10px] font-mono text-slate-400">
+                  <span>BUFFER DENSITY</span>
+                  <span class="text-emerald-400 font-bold">{{ product.stockQuantity }} UNITS</span>
+                </div>
+                <div class="h-1.5 w-full bg-slate-800/80 rounded-full overflow-hidden border border-emerald-950/40">
+                  <div
+                    class="h-full rounded-full transition-all duration-300"
+                    :class="product.stockQuantity < 10 ? 'bg-amber-500' : 'bg-gradient-to-r from-emerald-500 to-teal-400'"
+                    :style="{ width: `${Math.min(100, (product.stockQuantity / 60) * 100)}%` }"
+                  />
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="border-t border-slate-200 dark:border-slate-800 px-4 py-3 flex items-center justify-between">
+          <div class="border-t border-emerald-950/70 bg-[#060B12]/80 px-4 py-3 flex items-center justify-between font-mono">
             <div>
-              <p class="font-mono text-base font-bold text-emerald-500 dark:text-emerald-400">
+              <p class="text-base font-extrabold text-emerald-400">
                 {{ formatCurrency(product.price) }}
               </p>
-              <p class="text-[11px] text-slate-500 font-mono">
-                {{ product.stockQuantity }} units in stock
+              <p class="text-[10px] text-slate-500">
+                LOC: AMS-RACK-{{ (product.sku || '01').slice(-2) }}
               </p>
             </div>
 
             <div class="flex items-center gap-1">
               <button
                 type="button"
-                class="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-emerald-500"
+                class="rounded-lg p-1.5 text-slate-400 hover:bg-emerald-950/60 hover:text-emerald-400 transition-colors"
+                title="Inspect SKU Telemetry"
                 @click="inspectedProduct = product"
               >
                 <Eye class="h-4 w-4" />
               </button>
               <button
                 type="button"
-                class="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-amber-500"
+                class="rounded-lg p-1.5 text-slate-400 hover:bg-emerald-950/60 hover:text-amber-400 transition-colors"
+                title="Edit SKU"
                 @click="openEditModal(product)"
               >
                 <Pencil class="h-4 w-4" />
               </button>
               <button
                 type="button"
-                class="rounded-lg p-1.5 text-slate-400 hover:bg-rose-500/10 hover:text-rose-500"
+                class="rounded-lg p-1.5 text-slate-400 hover:bg-rose-500/20 hover:text-rose-400 transition-colors"
+                title="Delete SKU"
                 @click="handleDeleteProduct(product)"
               >
                 <Trash2 class="h-4 w-4" />
