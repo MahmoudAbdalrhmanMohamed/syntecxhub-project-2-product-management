@@ -63,20 +63,18 @@ const toggleTheme = () => {
     <!-- Brand Header -->
     <div class="flex h-16 items-center justify-between border-b border-slate-200/90 dark:border-emerald-950/70 px-4">
       <NuxtLink to="/" class="flex items-center gap-3 min-w-0">
-        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 text-white shadow-md shadow-emerald-500/25">
-          <Boxes class="h-5 w-5" />
-        </div>
+        <BrandProjectLogo :size="'md'" />
         <div v-if="!uiStore.sidebarCollapsed" class="min-w-0">
           <div class="flex items-center gap-1.5">
             <span class="truncate text-sm font-bold tracking-tight text-slate-900 dark:text-white block font-mono">
-              SKU·NEXUS
+              Syntecxhub
             </span>
-            <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60">
-              P2
+            <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+              SKU
             </span>
           </div>
           <p class="truncate text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-            Hardware &amp; SaaS Inventory
+            Inventory &amp; Telemetry
           </p>
         </div>
       </NuxtLink>

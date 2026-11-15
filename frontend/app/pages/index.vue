@@ -13,7 +13,7 @@ import {
 } from 'lucide-vue-next';
 
 useSeoMeta({
-  title: 'Inventory Telemetry — SKU Nexus Project 2',
+  title: 'Inventory Telemetry — Syntecxhub Inventory',
   description: 'Industrial hardware and cloud SKU inventory, stock valuation, and warehouse telemetry.',
 });
 
@@ -34,7 +34,7 @@ await useAsyncData('project2-dashboard', async () => {
         <div class="space-y-2">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-mono font-semibold">
             <Cpu class="h-3.5 w-3.5 text-emerald-500" />
-            <span>WAREHOUSE AMS-01 // STOCK TELEMETRY</span>
+            <span>SYNTECXHUB INVENTORY // GLOBAL SKU TELEMETRY</span>
           </div>
           <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white font-mono">
             Product &amp; SKU Inventory Overview
