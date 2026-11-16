@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {
-  LayoutDashboard,
+  Boxes,
   Package,
   Settings,
   FileCode2,
@@ -8,10 +8,13 @@ import {
   PanelLeftOpen,
   Sun,
   Moon,
-  Boxes,
-  X,
+  Truck,
   Cpu,
-  Layers,
+  Radio,
+  Warehouse,
+  X,
+  Gauge,
+  SlidersHorizontal,
 } from 'lucide-vue-next';
 
 const route = useRoute();
@@ -19,20 +22,34 @@ const uiStore = useUiStore();
 const colorMode = useColorMode();
 const productsStore = useProductsStore();
 
-const navigationGroups = [
+const industrialNav = [
   {
-    groupTitle: 'WAREHOUSE & CATALOG',
-    items: [
-      { label: 'Inventory Telemetry', to: '/', icon: LayoutDashboard },
-      { label: 'Product & SKU Catalog', to: '/products', icon: Package, count: computed(() => productsStore.totalProducts || 4) },
-    ],
+    moduleCode: 'MOD-01',
+    label: 'Inventory Telemetry',
+    to: '/',
+    icon: Gauge,
+    badge: 'REALTIME',
   },
   {
-    groupTitle: 'OPERATIONS',
-    items: [
-      { label: 'Warehouse Rules', to: '/settings', icon: Settings },
-      { label: 'Hardware REST API', to: '/api-docs', icon: FileCode2 },
-    ],
+    moduleCode: 'MOD-02',
+    label: 'Hardware & SKU Catalog',
+    to: '/products',
+    icon: Package,
+    count: computed(() => productsStore.totalProducts || 4),
+  },
+  {
+    moduleCode: 'MOD-03',
+    label: 'Warehouse & Bin Rules',
+    to: '/settings',
+    icon: Warehouse,
+    badge: 'ZONE-A',
+  },
+  {
+    moduleCode: 'MOD-04',
+    label: 'Telemetry API & Docs',
+    to: '/api-docs',
+    icon: FileCode2,
+    badge: 'REST',
   },
 ];
 
@@ -49,49 +66,64 @@ const toggleTheme = () => {
 <template>
   <div
     v-if="uiStore.mobileSidebarOpen"
-    class="fixed inset-0 z-40 bg-slate-950/70 backdrop-blur-sm lg:hidden"
+    class="fixed inset-0 z-40 bg-slate-950/80 backdrop-blur-sm lg:hidden"
     @click="uiStore.closeMobileSidebar"
   />
 
   <aside
-    class="fixed inset-y-0 left-0 z-40 flex flex-col border-r border-slate-200/90 dark:border-emerald-950/70 bg-white dark:bg-[#070D14] transition-all duration-200 lg:sticky lg:top-0 lg:h-screen lg:shrink-0"
+    class="fixed inset-y-0 left-0 z-40 flex flex-col border-r border-emerald-950/80 bg-[#070D12] transition-all duration-200 lg:sticky lg:top-0 lg:h-screen lg:shrink-0"
     :class="[
       uiStore.sidebarCollapsed ? 'w-20' : 'w-64',
       uiStore.mobileSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0',
     ]"
   >
-    <!-- Brand Header -->
+    <!-- Industrial Telemetry Brand Header -->
     <div
-      class="flex h-16 items-center border-b border-slate-200/90 dark:border-emerald-950/70 transition-all duration-200"
+      class="flex h-16 items-center border-b border-emerald-950/80 bg-[#050A0E] transition-all duration-200"
       :class="uiStore.sidebarCollapsed ? 'justify-center px-2' : 'justify-between px-4'"
     >
       <NuxtLink
+        v-if="!uiStore.sidebarCollapsed"
         to="/"
-        class="flex items-center min-w-0"
-        :class="uiStore.sidebarCollapsed ? 'justify-center' : 'gap-3'"
-        :title="uiStore.sidebarCollapsed ? 'Titan Logistics' : undefined"
+        class="flex items-center min-w-0 gap-3"
       >
         <BrandProjectLogo :size="'md'" />
-        <div v-if="!uiStore.sidebarCollapsed" class="min-w-0">
+        <div class="min-w-0">
           <div class="flex items-center gap-1.5">
-            <span class="truncate text-sm font-bold tracking-tight text-slate-900 dark:text-white block font-mono">
+            <span class="truncate text-sm font-bold font-mono tracking-tight text-white block">
               Titan
             </span>
-            <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+            <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
               LOGISTICS
             </span>
           </div>
-          <p class="truncate text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-            Hardware SKU &amp; Telemetry
-          </p>
+          <div class="flex items-center gap-1.5 mt-0.5">
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <p class="truncate text-[10px] font-mono text-slate-400 font-medium">
+              CLUSTER: NORTH-EAST // LIVE
+            </p>
+          </div>
         </div>
       </NuxtLink>
+
+      <!-- Collapsed State Header: Isometric Logo with Quick Rail Expand Toggle -->
+      <button
+        v-else
+        type="button"
+        class="group/rail flex h-11 w-11 items-center justify-center rounded-xl border border-emerald-950/80 bg-[#081216] hover:border-emerald-500 hover:bg-emerald-950/70 transition-all cursor-pointer shadow-sm relative"
+        title="Expand Sidebar (Ctrl+B)"
+        aria-label="Expand Sidebar"
+        @click="uiStore.toggleSidebar"
+      >
+        <BrandProjectLogo :size="'sm'" class="transition-opacity duration-150 group-hover/rail:opacity-0" />
+        <PanelLeftOpen class="absolute h-5 w-5 text-emerald-400 opacity-0 group-hover/rail:opacity-100 transition-opacity duration-150" />
+      </button>
 
       <!-- Desktop Collapse Button (Expanded State) -->
       <button
         v-if="!uiStore.sidebarCollapsed"
         type="button"
-        class="hidden lg:inline-flex rounded-lg p-1.5 text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-emerald-950/60 transition-all cursor-pointer"
+        class="hidden lg:inline-flex rounded-lg p-1.5 text-slate-400 hover:text-white hover:bg-emerald-950/60 transition-all cursor-pointer font-mono"
         title="Collapse Sidebar (Ctrl+B)"
         aria-label="Collapse Sidebar"
         @click="uiStore.toggleSidebar"
@@ -105,56 +137,105 @@ const toggleTheme = () => {
       </button>
     </div>
 
-    <!-- Grouped Navigation -->
-    <nav class="flex-1 space-y-6 overflow-y-auto px-3 py-5">
-      <div v-for="group in navigationGroups" :key="group.groupTitle" class="space-y-1">
-        <p
-          v-if="!uiStore.sidebarCollapsed"
-          class="px-3 pb-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-emerald-300/50 font-mono"
-        >
-          {{ group.groupTitle }}
-        </p>
+    <!-- Telemetry Status Ribbon (Expanded) -->
+    <div
+      v-if="!uiStore.sidebarCollapsed"
+      class="border-b border-emerald-950/60 bg-emerald-950/20 px-4 py-2 flex items-center justify-between text-[11px] font-mono text-emerald-300/80"
+    >
+      <span class="flex items-center gap-1.5">
+        <Radio class="h-3 w-3 text-emerald-400 animate-pulse" />
+        <span>NODE: LOG-HQ-01</span>
+      </span>
+      <span class="px-1.5 py-0.2 rounded bg-emerald-500/10 text-emerald-400 text-[10px] border border-emerald-500/20">
+        LATENCY 12ms
+      </span>
+    </div>
 
-        <NuxtLink
-          v-for="item in group.items"
-          :key="item.to"
-          :to="item.to"
-          :title="uiStore.sidebarCollapsed ? item.label : undefined"
-          class="group relative flex items-center rounded-lg text-sm font-medium transition-all duration-150"
-          :class="[
-            uiStore.sidebarCollapsed ? 'justify-center w-12 h-10 mx-auto px-0' : 'gap-3 px-3 py-2.5',
-            isActive(item.to)
-              ? 'bg-emerald-600 text-white shadow-sm shadow-emerald-600/30 font-semibold'
-              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-emerald-950/40 hover:text-emerald-600 dark:hover:text-emerald-300',
-          ]"
-        >
-          <component :is="item.icon" class="h-4 w-4 shrink-0" />
-          <span v-if="!uiStore.sidebarCollapsed" class="truncate flex-1">{{ item.label }}</span>
-          <span
-            v-if="!uiStore.sidebarCollapsed && item.count"
-            class="text-[11px] font-mono font-semibold px-2 py-0.5 rounded"
-            :class="isActive(item.to) ? 'bg-emerald-700 text-white' : 'bg-slate-100 dark:bg-emerald-950/80 text-slate-600 dark:text-emerald-300'"
-          >
-            {{ item.count.value }} SKUs
-          </span>
-        </NuxtLink>
+    <!-- Navigation List (Industrial Style) -->
+    <nav class="flex-1 space-y-2 overflow-y-auto px-3 py-4">
+      <div v-if="!uiStore.sidebarCollapsed" class="px-3 pb-2 text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500">
+        OPERATIONAL MODULES
       </div>
+
+      <NuxtLink
+        v-for="item in industrialNav"
+        :key="item.to"
+        :to="item.to"
+        :title="uiStore.sidebarCollapsed ? item.label : undefined"
+        class="group relative flex items-center rounded-xl text-xs sm:text-sm font-medium transition-all duration-150"
+        :class="[
+          uiStore.sidebarCollapsed ? 'justify-center w-12 h-10 mx-auto px-0' : 'gap-3 px-3 py-2.5',
+          isActive(item.to)
+            ? 'bg-emerald-600/90 text-white shadow-md shadow-emerald-600/20 border border-emerald-400/40'
+            : 'text-slate-300 hover:bg-emerald-950/40 hover:text-white',
+        ]"
+      >
+        <component
+          :is="item.icon"
+          class="h-4 w-4 shrink-0 transition-colors"
+          :class="isActive(item.to) ? 'text-white' : 'text-emerald-400 group-hover:text-emerald-300'"
+        />
+        
+        <div v-if="!uiStore.sidebarCollapsed" class="flex-1 min-w-0">
+          <p class="truncate font-mono">{{ item.label }}</p>
+          <p class="text-[10px] text-slate-500 font-mono">{{ item.moduleCode }}</p>
+        </div>
+
+        <!-- Count badge -->
+        <span
+          v-if="!uiStore.sidebarCollapsed && item.count"
+          class="text-[10px] font-mono font-bold px-2 py-0.5 rounded"
+          :class="isActive(item.to) ? 'bg-emerald-800 text-white' : 'bg-emerald-950/80 text-emerald-300 border border-emerald-800/40'"
+        >
+          {{ item.count.value }} SKUs
+        </span>
+
+        <!-- Badge -->
+        <span
+          v-else-if="!uiStore.sidebarCollapsed && item.badge"
+          class="text-[9px] font-mono px-1.5 py-0.5 rounded"
+          :class="isActive(item.to) ? 'bg-emerald-800 text-white' : 'bg-emerald-950/40 text-emerald-400'"
+        >
+          {{ item.badge }}
+        </span>
+      </NuxtLink>
     </nav>
 
-    <!-- Bottom Stock & Warehouse Telemetry Dock -->
-    <div class="border-t border-slate-200/90 dark:border-emerald-950/70 p-3 space-y-2 bg-slate-50/50 dark:bg-[#050A10]/50">
-      <div v-if="!uiStore.sidebarCollapsed" class="p-2.5 rounded-lg bg-emerald-50/80 dark:bg-emerald-950/40 border border-emerald-200/60 dark:border-emerald-900/50 flex items-center gap-2.5">
-        <div class="h-2 w-2 rounded-full bg-emerald-400 animate-ping shrink-0" />
-        <div class="min-w-0 flex-1">
-          <p class="text-[11px] font-semibold text-emerald-900 dark:text-emerald-200 truncate font-mono">AMS-01 PRIMARY VAULT</p>
-          <p class="text-[10px] text-emerald-600 dark:text-emerald-400">Inventory Sync Online</p>
+    <!-- Bottom Warehouse Bay Capacity Dock -->
+    <div class="border-t border-emerald-950/80 p-3 space-y-2.5 bg-[#050A0E]">
+      <!-- Warehouse Bay Load Meters -->
+      <div v-if="!uiStore.sidebarCollapsed" class="p-2.5 rounded-xl bg-emerald-950/30 border border-emerald-900/40 space-y-2 font-mono">
+        <div class="flex items-center justify-between text-[11px] font-semibold text-emerald-300">
+          <span class="flex items-center gap-1.5">
+            <Warehouse class="h-3.5 w-3.5 text-emerald-400" />
+            <span>Bay Load Distribution</span>
+          </span>
+          <span class="text-xs font-bold text-white">63%</span>
+        </div>
+
+        <div class="space-y-1.5 text-[10px] text-slate-400">
+          <div class="flex items-center justify-between">
+            <span>Bay Alpha (Servers)</span>
+            <span class="text-emerald-400 font-bold">84%</span>
+          </div>
+          <div class="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+            <div class="h-full bg-emerald-500 rounded-full w-[84%]" />
+          </div>
+
+          <div class="flex items-center justify-between">
+            <span>Bay Bravo (HSM / Security)</span>
+            <span class="text-amber-400 font-bold">42%</span>
+          </div>
+          <div class="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+            <div class="h-full bg-amber-500 rounded-full w-[42%]" />
+          </div>
         </div>
       </div>
 
       <!-- Rail Expand / Collapse Toggle -->
       <button
         type="button"
-        class="flex items-center rounded-lg border border-slate-200 dark:border-emerald-950/80 bg-white dark:bg-[#0B141F] font-medium text-slate-700 dark:text-slate-300 hover:border-emerald-400 hover:text-emerald-400 transition-colors cursor-pointer"
+        class="flex items-center rounded-xl border border-emerald-950/80 bg-[#0A121A] font-medium font-mono text-slate-300 hover:border-emerald-500 hover:text-emerald-400 transition-colors cursor-pointer"
         :class="
           uiStore.sidebarCollapsed
             ? 'w-12 h-10 mx-auto justify-center px-0'
@@ -167,14 +248,14 @@ const toggleTheme = () => {
         <span class="flex items-center gap-2">
           <PanelLeftOpen v-if="uiStore.sidebarCollapsed" class="h-4 w-4 text-emerald-400 shrink-0" />
           <PanelLeftClose v-else class="h-4 w-4 shrink-0 text-slate-400" />
-          <span v-if="!uiStore.sidebarCollapsed">Collapse Sidebar</span>
+          <span v-if="!uiStore.sidebarCollapsed">Collapse Terminal</span>
         </span>
-        <kbd v-if="!uiStore.sidebarCollapsed" class="hidden sm:inline font-mono text-[10px] text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700">Ctrl+B</kbd>
+        <kbd v-if="!uiStore.sidebarCollapsed" class="hidden sm:inline font-mono text-[10px] text-slate-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-900/60">Ctrl+B</kbd>
       </button>
 
       <button
         type="button"
-        class="flex items-center rounded-lg border border-slate-200 dark:border-emerald-950/80 bg-white dark:bg-[#0B141F] font-medium text-slate-700 dark:text-slate-300 hover:border-emerald-400 transition-colors cursor-pointer"
+        class="flex items-center rounded-xl border border-emerald-950/80 bg-[#0A121A] font-medium font-mono text-slate-300 hover:border-emerald-500 hover:text-emerald-400 transition-colors cursor-pointer"
         :class="
           uiStore.sidebarCollapsed
             ? 'w-12 h-10 mx-auto justify-center px-0'
@@ -185,7 +266,7 @@ const toggleTheme = () => {
       >
         <span class="flex items-center gap-2">
           <Sun v-if="colorMode.value === 'dark'" class="h-4 w-4 text-amber-400 shrink-0" />
-          <Moon v-else class="h-4 w-4 text-emerald-600 shrink-0" />
+          <Moon v-else class="h-4 w-4 text-emerald-400 shrink-0" />
           <span v-if="!uiStore.sidebarCollapsed">{{ colorMode.value === 'dark' ? 'Light Mode' : 'Dark Mode' }}</span>
         </span>
       </button>

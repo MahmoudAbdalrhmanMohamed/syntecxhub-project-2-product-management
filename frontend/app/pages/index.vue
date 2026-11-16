@@ -10,6 +10,11 @@ import {
   Layers,
   Sparkles,
   TrendingUp,
+  Warehouse,
+  Truck,
+  Gauge,
+  Activity,
+  CheckCircle2,
 } from 'lucide-vue-next';
 
 useSeoMeta({
@@ -28,172 +33,213 @@ await useAsyncData('project2-dashboard', async () => {
 
 <template>
   <div class="space-y-6">
-    <!-- Industrial Hardware Header Banner -->
-    <div class="relative overflow-hidden rounded-2xl border border-emerald-200/80 dark:border-emerald-950/80 bg-gradient-to-r from-emerald-950/40 via-teal-900/20 to-transparent p-6 sm:p-8">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 relative z-10">
+    <!-- Industrial Operations Command Ribbon -->
+    <div class="relative overflow-hidden rounded-2xl border border-emerald-950/80 bg-gradient-to-r from-[#071311] via-[#0A1A18] to-[#060D12] p-6 sm:p-7 shadow-lg shadow-emerald-950/30">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative z-10">
         <div class="space-y-2">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-mono font-semibold">
-            <Cpu class="h-3.5 w-3.5 text-emerald-500" />
-            <span>TITAN LOGISTICS // GLOBAL SKU TELEMETRY</span>
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-semibold">
+              <Cpu class="h-3.5 w-3.5 text-emerald-400" />
+              <span>TITAN LOGISTICS // HARDWARE FLEET TELEMETRY</span>
+            </span>
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              WAREHOUSE CLUSTER 04 // ACTIVE
+            </span>
           </div>
-          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white font-mono">
-            Product &amp; SKU Inventory Overview
+
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white font-mono">
+            Industrial Hardware &amp; SKU Inventory
           </h2>
-          <p class="text-sm text-slate-600 dark:text-slate-300 max-w-2xl">
-            Live catalog valuation, hardware appliances, zero-trust cryptographic HSMs, and enterprise cloud licenses managed across primary warehouse nodes.
+          <p class="text-xs sm:text-sm text-slate-300 max-w-2xl font-mono leading-relaxed">
+            Live catalog valuation, hardware appliances, cryptographic HSM modules, and enterprise licenses tracked across global logistics nodes.
           </p>
         </div>
 
         <div class="flex items-center gap-3 shrink-0">
-          <button type="button" class="btn-secondary" @click="dashboardStore.fetchDashboardData()">
+          <button type="button" class="btn-secondary text-xs sm:text-sm font-mono" @click="dashboardStore.fetchDashboardData()">
             <RefreshCw class="h-4 w-4" :class="{ 'animate-spin': dashboardStore.loading }" />
-            Sync Stock
+            <span>Sync Telemetry</span>
           </button>
-          <NuxtLink to="/products" class="btn-primary">
-            <span>Open Catalog</span>
+          <NuxtLink to="/products" class="btn-primary text-xs sm:text-sm font-mono">
+            <Package class="h-4 w-4" />
+            <span>Open SKU Catalog</span>
             <ArrowUpRight class="h-4 w-4" />
           </NuxtLink>
         </div>
       </div>
     </div>
 
-    <!-- Inventory KPIs (Telemetry HUD Format) -->
+    <!-- Inventory Telemetry Gauges (3 Columns Industrial Layout) -->
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
-      <div class="surface-card p-5 group border border-emerald-950/70 bg-[#0A121A] relative overflow-hidden">
+      <!-- Total Catalog SKUs -->
+      <div class="surface-card rounded-xl border border-emerald-950/80 bg-[#091118] p-5 relative overflow-hidden group hover:border-emerald-500/50 transition-all font-mono">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400">Total Catalog SKUs</span>
-          <div class="h-9 w-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Tracked Hardware SKUs</span>
+          <div class="h-8 w-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
             <Boxes class="h-4 w-4" />
           </div>
         </div>
-        <p class="mt-3 text-3xl font-extrabold font-mono text-white tracking-tight">
-          {{ dashboardStore.stats?.summary.totalProducts ?? 0 }}
+        <p class="mt-3 text-3xl font-extrabold text-white tracking-tight">
+          {{ dashboardStore.stats?.summary.totalProducts ?? 0 }} <span class="text-xs font-normal text-slate-400">SKUs</span>
         </p>
-        <div class="mt-2 flex items-center justify-between text-xs font-mono text-emerald-400">
-          <span class="flex items-center gap-1"><Sparkles class="h-3 w-3" /> Active SKUs</span>
-          <span class="text-slate-500">ZONE: ALL</span>
+        <div class="mt-2 flex items-center justify-between text-xs text-emerald-400">
+          <span class="flex items-center gap-1"><Sparkles class="h-3 w-3" /> Fully Tagged</span>
+          <span class="text-slate-500">BAYS: ALL</span>
         </div>
       </div>
 
-      <div class="surface-card p-5 group border border-emerald-950/70 bg-[#0A121A] relative overflow-hidden">
+      <!-- Inventory Valuation -->
+      <div class="surface-card rounded-xl border border-emerald-950/80 bg-[#091118] p-5 relative overflow-hidden group hover:border-emerald-500/50 transition-all font-mono">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400">Inventory Valuation</span>
-          <div class="h-9 w-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Capital Asset Valuation</span>
+          <div class="h-8 w-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
             <DollarSign class="h-4 w-4" />
           </div>
         </div>
-        <p class="mt-3 text-3xl font-extrabold font-mono text-emerald-400 tracking-tight">
+        <p class="mt-3 text-3xl font-extrabold text-emerald-400 tracking-tight">
           {{ formatCurrency(dashboardStore.stats?.summary.totalInventoryValue) }}
         </p>
-        <div class="mt-2 flex items-center justify-between text-xs font-mono">
-          <span class="text-emerald-400/80">Capital Assets</span>
-          <span class="text-slate-500">INDEX: USD</span>
+        <div class="mt-2 flex items-center justify-between text-xs text-slate-400">
+          <span>Enterprise Index</span>
+          <span class="text-emerald-400">USD CURRENCY</span>
         </div>
       </div>
 
-      <div class="surface-card p-5 group border border-amber-950/60 bg-[#0A121A] relative overflow-hidden">
+      <!-- Reorder Alerts -->
+      <div class="surface-card rounded-xl border border-amber-950/80 bg-[#091118] p-5 relative overflow-hidden group hover:border-amber-500/50 transition-all font-mono">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400">Reorder Threshold Alerts</span>
-          <div class="h-9 w-9 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Stock Reorder Alerts</span>
+          <div class="h-8 w-8 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
             <AlertTriangle class="h-4 w-4" />
           </div>
         </div>
-        <p class="mt-3 text-3xl font-extrabold font-mono text-amber-400 tracking-tight">
-          {{ dashboardStore.stats?.summary.lowStockCount ?? 0 }}
+        <p class="mt-3 text-3xl font-extrabold text-amber-400 tracking-tight">
+          {{ dashboardStore.stats?.summary.lowStockProducts ?? 0 }}
         </p>
-        <div class="mt-2 flex items-center justify-between text-xs font-mono text-amber-400/80">
-          <span>Critical Stock Units</span>
-          <span class="text-amber-500 font-bold">ACTION REQ</span>
+        <div class="mt-2 flex items-center justify-between text-xs text-amber-400/80">
+          <span>Threshold &lt; 5 units</span>
+          <span class="text-slate-500">DEFICIT 0</span>
         </div>
       </div>
     </div>
 
-    <!-- Warehouse Storage Zone HUD Allocation Matrix -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div class="rounded-xl border border-emerald-950/80 bg-[#0A121A] p-4 space-y-3 font-mono">
-        <div class="flex items-center justify-between text-xs border-b border-emerald-950/60 pb-2">
-          <span class="text-slate-300 font-bold flex items-center gap-2">
-            <span class="h-2 w-2 rounded-full bg-emerald-400"></span> ZONE A: COMPUTE BLADES
-          </span>
-          <span class="text-emerald-400">92% CAP</span>
-        </div>
-        <div class="h-2 bg-slate-900 rounded-full overflow-hidden border border-emerald-950/60">
-          <div class="h-full bg-emerald-400 rounded-full w-[92%]"></div>
-        </div>
-        <div class="flex justify-between text-[11px] text-slate-400">
-          <span>Racks: 01 to 08</span>
-          <span class="text-slate-200 font-bold">384 Units</span>
-        </div>
-      </div>
-
-      <div class="rounded-xl border border-emerald-950/80 bg-[#0A121A] p-4 space-y-3 font-mono">
-        <div class="flex items-center justify-between text-xs border-b border-emerald-950/60 pb-2">
-          <span class="text-slate-300 font-bold flex items-center gap-2">
-            <span class="h-2 w-2 rounded-full bg-teal-400"></span> ZONE B: STORAGE PODS
-          </span>
-          <span class="text-teal-400">76% CAP</span>
-        </div>
-        <div class="h-2 bg-slate-900 rounded-full overflow-hidden border border-emerald-950/60">
-          <div class="h-full bg-teal-400 rounded-full w-[76%]"></div>
-        </div>
-        <div class="flex justify-between text-[11px] text-slate-400">
-          <span>Racks: 09 to 16</span>
-          <span class="text-slate-200 font-bold">512 Units</span>
-        </div>
-      </div>
-
-      <div class="rounded-xl border border-emerald-950/80 bg-[#0A121A] p-4 space-y-3 font-mono">
-        <div class="flex items-center justify-between text-xs border-b border-emerald-950/60 pb-2">
-          <span class="text-slate-300 font-bold flex items-center gap-2">
-            <span class="h-2 w-2 rounded-full bg-cyan-400"></span> ZONE C: HSM VAULTS
-          </span>
-          <span class="text-cyan-400">64% CAP</span>
-        </div>
-        <div class="h-2 bg-slate-900 rounded-full overflow-hidden border border-emerald-950/60">
-          <div class="h-full bg-cyan-400 rounded-full w-[64%]"></div>
-        </div>
-        <div class="flex justify-between text-[11px] text-slate-400">
-          <span>Racks: 17 to 24</span>
-          <span class="text-slate-200 font-bold">128 Units</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Category Breakdown Matrix -->
-    <div class="surface-card p-6">
-      <div class="flex items-center justify-between border-b border-slate-200 dark:border-emerald-950/70 pb-4">
-        <div class="flex items-center gap-2.5">
-          <div class="h-2 w-2 rounded-full bg-emerald-500" />
-          <h3 class="text-sm font-bold font-mono text-slate-900 dark:text-white uppercase tracking-wider">
-            Inventory Valuation by Equipment Category
-          </h3>
-        </div>
-        <span class="text-xs font-mono text-emerald-500">Live Breakdown</span>
-      </div>
-
-      <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div
-          v-for="cat in dashboardStore.stats?.categories || []"
-          :key="cat._id"
-          class="rounded-xl border border-slate-200/80 dark:border-emerald-950/80 bg-slate-50/60 dark:bg-[#070D14] p-4 space-y-3"
-        >
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 font-mono">
-              {{ cat._id }}
-            </span>
-            <span class="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-              {{ cat.count }} Items
+    <!-- Main Operational Split: Hardware SKU Telemetry Ledger & Logistics Stream -->
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <!-- Left 2 Cols: Hardware Categories & Category Distribution -->
+      <div class="lg:col-span-2 space-y-6">
+        <div class="rounded-xl border border-emerald-950/80 bg-[#081017] p-5 sm:p-6 shadow-sm font-mono">
+          <div class="flex items-center justify-between pb-4 border-b border-emerald-950/80">
+            <div>
+              <h3 class="text-base font-bold text-white flex items-center gap-2">
+                <Layers class="h-4 w-4 text-emerald-400" />
+                <span>Hardware Category Breakdown</span>
+              </h3>
+              <p class="text-xs text-slate-400 mt-0.5">
+                Distribution of appliance stock and warehouse bin volume.
+              </p>
+            </div>
+            <span class="text-xs text-emerald-400 bg-emerald-950/60 px-2.5 py-1 rounded border border-emerald-900/50">
+              AUDITED
             </span>
           </div>
 
-          <div class="space-y-1">
-            <p class="text-xl font-extrabold font-mono text-slate-900 dark:text-white">
-              {{ formatCurrency(cat.totalValue) }}
-            </p>
-            <p class="text-[11px] text-slate-500 font-mono">
-              Units in stock: <span class="font-bold text-slate-700 dark:text-slate-300">{{ cat.totalStock }}</span>
-            </p>
+          <!-- Category Bars Grid -->
+          <div class="mt-5 space-y-4">
+            <div
+              v-for="cat in (dashboardStore.stats?.distributions?.productsByCategory ?? [])"
+              :key="cat.category"
+              class="p-4 rounded-lg bg-emerald-950/20 border border-emerald-900/30 hover:border-emerald-500/40 transition-colors"
+            >
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-bold text-slate-200 uppercase tracking-wider">{{ cat.category }}</span>
+                <span class="font-bold text-emerald-400">
+                  {{ cat.count }} SKU(s) • {{ formatCurrency(cat.totalValue) }}
+                </span>
+              </div>
+              <div class="mt-2.5 h-1.5 w-full bg-slate-900 rounded-full overflow-hidden">
+                <div
+                  class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full"
+                  :style="{ width: `${Math.min(100, (cat.count / (dashboardStore.stats?.summary.totalProducts || 1)) * 100)}%` }"
+                />
+              </div>
+            </div>
           </div>
+        </div>
+
+        <!-- Warehouse Operational Directives -->
+        <div class="rounded-xl border border-emerald-950/80 bg-[#081017] p-5 sm:p-6 shadow-sm font-mono">
+          <div class="flex items-center justify-between pb-4 border-b border-emerald-950/80">
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <Warehouse class="h-4 w-4 text-teal-400" />
+              <span>Logistics Operational Protocols</span>
+            </h3>
+            <span class="text-xs text-emerald-400">ACTIVE</span>
+          </div>
+
+          <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="p-3 rounded-lg bg-emerald-950/15 border border-emerald-900/40">
+              <p class="font-bold text-slate-200">Zero-Trust HSM Protocol</p>
+              <p class="text-[11px] text-slate-400 mt-1">Dual-operator verification required for physical extraction from Bay Alpha.</p>
+            </div>
+            <div class="p-3 rounded-lg bg-emerald-950/15 border border-emerald-900/40">
+              <p class="font-bold text-slate-200">Automated Restock Threshold</p>
+              <p class="text-[11px] text-slate-400 mt-1">Suppliers dispatched automatically when inventory reaches 3 units.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right 1 Col: Industrial Logistics Telemetry Log -->
+      <div class="rounded-xl border border-emerald-950/80 bg-[#081017] p-5 sm:p-6 shadow-sm flex flex-col font-mono">
+        <div class="flex items-center justify-between pb-4 border-b border-emerald-950/80">
+          <div>
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <Truck class="h-4 w-4 text-emerald-400" />
+              <span>Dispatch &amp; Stock Ledger</span>
+            </h3>
+            <p class="text-xs text-slate-400 mt-0.5">Live inventory movements.</p>
+          </div>
+          <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+        </div>
+
+        <div class="mt-4 flex-1 space-y-3.5 overflow-y-auto max-h-[500px]">
+          <div
+            v-for="(item, idx) in (dashboardStore.activity ?? [])"
+            :key="idx"
+            class="p-3 rounded-lg bg-emerald-950/20 border border-emerald-900/30 text-xs space-y-1.5"
+          >
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] text-emerald-400 font-bold uppercase">
+                {{ item.type || 'STOCK_EVENT' }}
+              </span>
+              <span class="text-[10px] text-slate-500">
+                {{ item.timestamp || 'RECENT' }}
+              </span>
+            </div>
+            <p class="font-semibold text-slate-200 truncate">
+              {{ item.title }}
+            </p>
+            <div class="flex items-center justify-between text-[10px] text-slate-400">
+              <span>{{ item.description }}</span>
+              <span class="text-emerald-400 font-bold">LOGGED</span>
+            </div>
+          </div>
+
+          <div
+            v-if="!dashboardStore.activity?.length"
+            class="text-center py-12 text-slate-500 text-xs"
+          >
+            No active dispatch operations in current buffer.
+          </div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-emerald-950/80 flex items-center justify-between text-xs">
+          <NuxtLink to="/products" class="text-emerald-400 hover:text-emerald-300 flex items-center gap-1">
+            <span>Inspect Product Grid</span>
+            <ArrowUpRight class="h-3 w-3" />
+          </NuxtLink>
+          <span class="text-[10px] text-slate-500">TERMINAL NOMINAL</span>
         </div>
       </div>
     </div>
