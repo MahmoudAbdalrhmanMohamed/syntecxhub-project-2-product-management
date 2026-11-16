@@ -152,7 +152,7 @@ const toggleTheme = () => {
     </div>
 
     <!-- Navigation List (Industrial Style) -->
-    <nav class="flex-1 space-y-2 overflow-y-auto px-3 py-4">
+    <nav class="flex-1 space-y-2 overflow-y-auto custom-scrollbar px-3 py-4">
       <div v-if="!uiStore.sidebarCollapsed" class="px-3 pb-2 text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500">
         OPERATIONAL MODULES
       </div>

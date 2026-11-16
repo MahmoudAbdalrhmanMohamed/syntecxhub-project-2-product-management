@@ -362,7 +362,7 @@ const statusLabel = (status: string) => {
       v-else-if="productsStore.viewMode === 'table'"
       class="surface-card overflow-hidden"
     >
-      <div class="overflow-x-auto">
+      <div class="overflow-x-auto custom-scrollbar">
         <table class="w-full text-left border-collapse">
           <thead>
             <tr
@@ -610,7 +610,7 @@ const statusLabel = (status: string) => {
             </button>
           </div>
 
-          <form class="p-6 space-y-4 max-h-[82vh] overflow-y-auto" @submit.prevent="handleSaveProduct">
+          <form class="p-6 space-y-4 max-h-[82vh] overflow-y-auto custom-scrollbar" @submit.prevent="handleSaveProduct">
             <div
               v-if="serverError"
               class="rounded-lg border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-xs text-rose-500"
@@ -766,7 +766,7 @@ const statusLabel = (status: string) => {
         @click.self="inspectedProduct = null"
       >
         <div
-          class="h-full w-full max-w-md bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 p-6 overflow-y-auto flex flex-col justify-between shadow-2xl"
+          class="h-full w-full max-w-md bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 p-6 overflow-y-auto custom-scrollbar flex flex-col justify-between shadow-2xl"
         >
           <div class="space-y-5">
             <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
