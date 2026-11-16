@@ -1,7 +1,7 @@
 {
   "name": "syntecxhub-project-2-product-management-backend",
   "version": "1.0.0",
-  "description": "Syntecxhub Project 2 \u2014 Product & SKU Inventory Management - NestJS & MongoDB Backend API",
+  "description": "Titan Logistics — Industrial Hardware SKU & Logistics Telemetry - NestJS & MongoDB Backend API",
   "author": "Mahmoud Abdalrahman Mohamed",
   "private": true,
   "license": "MIT",

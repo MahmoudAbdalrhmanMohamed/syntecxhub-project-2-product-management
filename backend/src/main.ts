@@ -8,7 +8,7 @@ import { AllExceptionsFilter } from './common/filters/http-exception.filter';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 
 async function bootstrap() {
-  const logger = new Logger('SyntecxhubBootstrap');
+  const logger = new Logger('TitanBootstrap');
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
 
@@ -83,9 +83,9 @@ async function bootstrap() {
   app.useGlobalInterceptors(new TransformInterceptor());
 
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('Syntecxhub Enterprise Management Platform API')
+    .setTitle('Titan Logistics & Hardware Telemetry API')
     .setDescription(
-      'Production REST API for User Administration, Hardware & SaaS Inventory Management, Media Library Uploads, and Executive Analytics.',
+      'Enterprise REST API for Hardware Appliances, SKU Stock Telemetry, Warehouse Clusters, and Valuation Tracking.',
     )
     .setVersion('1.0.0')
     .addTag('Dashboard', 'Real-time KPI metrics and platform activity stream')
@@ -96,11 +96,11 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api/docs', app, document, {
-    customSiteTitle: 'Syntecxhub API Reference',
+    customSiteTitle: 'Titan Logistics API Reference',
   });
 
   await app.listen(port);
-  logger.log(`Syntecxhub API Server running on http://localhost:${port}/api`);
+  logger.log(`Titan Logistics API Server running on http://localhost:${port}/api`);
   logger.log(`Swagger OpenAPI Documentation at http://localhost:${port}/api/docs`);
 }
 

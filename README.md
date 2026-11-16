@@ -1,4 +1,4 @@
-# Syntecxhub Project 2 — Product & SKU Inventory Management
+# Titan Logistics — Industrial Hardware SKU & Logistics Telemetry
 
 Standalone enterprise Product Catalog & Inventory Control full-stack platform with Table & Card views (Project 2).
 
@@ -9,7 +9,7 @@ Built with **Nuxt 4 (Vue 3 Composition API, Strict TypeScript, Tailwind CSS, Pin
 - `frontend/` — Complete Nuxt 4 SSR application (`app/pages/`, `app/components/`, `app/layouts/`, `app/composables/`, `app/stores/`, `app/middleware/`, `app/plugins/`, `shared/`, `server/`).
 - `backend/` — Complete NestJS application (`src/products/`, `src/dashboard/`, `src/common/`, `src/config/`, `src/seed/`).
 - `postman/` — Postman API collection for this project.
-- `docker-compose.yml` — Container orchestration for MongoDB (`syntecxhub_products_db`), NestJS Backend (`:4000`), and Nuxt 4 Frontend (`:3000`).
+- `docker-compose.yml` — Container orchestration for MongoDB (`titan_logistics_db`), NestJS Backend (`:4002`), and Nuxt 4 Frontend (`:3002`).
 - `.env.example` — Environment configuration template.
 
 ## Quick Start
@@ -32,6 +32,6 @@ npm install
 npm run dev
 ```
 
-- **Frontend UI**: `http://localhost:3000`
-- **Backend API**: `http://localhost:4000/api`
-- **Swagger OpenAPI UI**: `http://localhost:4000/api/docs`
+- **Frontend UI**: `http://localhost:3002`
+- **Backend API**: `http://localhost:4002/api`
+- **Swagger OpenAPI UI**: `http://localhost:4002/api/docs`

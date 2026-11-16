@@ -54,15 +54,15 @@ export default defineNuxtConfig({
     classSuffix: '',
     preference: 'dark',
     fallback: 'dark',
-    storageKey: 'syntecxhub-color-mode',
+    storageKey: 'titan-color-mode',
   },
 
   runtimeConfig: {
-    internalApiSecret: process.env.NUXT_INTERNAL_API_SECRET || 'syntecxhub-internal-ssr-key',
+    internalApiSecret: process.env.NUXT_INTERNAL_API_SECRET || 'titan-internal-ssr-key',
     public: {
       apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL || 'http://localhost:4002/api',
       backendOrigin: process.env.NUXT_PUBLIC_BACKEND_ORIGIN || 'http://localhost:4002',
-      appName: 'Syntecxhub Inventory',
+      appName: 'Titan Logistics',
       appVersion: '1.0.0',
     },
   },
@@ -72,7 +72,7 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en',
       },
-      titleTemplate: '%s — Syntecxhub Inventory',
+      titleTemplate: '%s — Titan Logistics',
       title: 'Hardware Catalog & Global SKU Telemetry',
       meta: [
         { charset: 'utf-8' },
@@ -81,17 +81,17 @@ export default defineNuxtConfig({
         {
           name: 'description',
           content:
-            'Syntecxhub Inventory — High-Tech Hardware Inventory, SKU Telemetry, and Cloud Appliance Management.',
+            'Titan Logistics — High-Tech Hardware Inventory, SKU Telemetry, and Cloud Appliance Management.',
         },
         { name: 'keywords', content: 'SKU Nexus, Hardware Inventory, Stock Management, Asset Tracking, Telemetry Catalog, Enterprise Stock Valuation, NestJS Inventory, Nuxt 4' },
-        { name: 'author', content: 'Syntecxhub Enterprise' },
+        { name: 'author', content: 'Titan Logistics Systems' },
         { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
         { name: 'theme-color', content: '#070D14' },
 
         // Google Search Console & Webmaster Verification
-        { name: 'google-site-verification', content: process.env.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'syntecxhub-inventory-gsc-verification-token' },
-        { name: 'msvalidate.01', content: process.env.NUXT_PUBLIC_BING_SITE_VERIFICATION || 'syntecxhub-inventory-bing-verification-token' },
-        { name: 'yandex-verification', content: process.env.NUXT_PUBLIC_YANDEX_SITE_VERIFICATION || 'syntecxhub-inventory-yandex-verification-token' },
+        { name: 'google-site-verification', content: process.env.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'titan-logistics-gsc-verification-token' },
+        { name: 'msvalidate.01', content: process.env.NUXT_PUBLIC_BING_SITE_VERIFICATION || 'titan-logistics-bing-verification-token' },
+        { name: 'yandex-verification', content: process.env.NUXT_PUBLIC_YANDEX_SITE_VERIFICATION || 'titan-logistics-yandex-verification-token' },
 
         // Geographic (GEO) Meta Tags
         { name: 'geo.region', content: 'US-CA' },
@@ -101,23 +101,23 @@ export default defineNuxtConfig({
 
         // OpenGraph (SEO / Social)
         { property: 'og:type', content: 'website' },
-        { property: 'og:site_name', content: 'Syntecxhub Inventory' },
-        { property: 'og:title', content: 'Syntecxhub Inventory — Hardware Catalog & Global SKU Telemetry' },
+        { property: 'og:site_name', content: 'Titan Logistics' },
+        { property: 'og:title', content: 'Titan Logistics — Hardware Catalog & Global SKU Telemetry' },
         { property: 'og:description', content: 'Real-time hardware inventory, stock valuation matrices, warehouse telemetry, and OpenAPI integration.' },
-        { property: 'og:url', content: 'https://inventory.syntecxhub.com/' },
-        { property: 'og:image', content: 'https://inventory.syntecxhub.com/favicon.svg' },
+        { property: 'og:url', content: 'https://inventory.titantelemetry.io/' },
+        { property: 'og:image', content: 'https://inventory.titantelemetry.io/favicon.svg' },
         { property: 'og:locale', content: 'en_US' },
 
         // Twitter Card (SEO / Social)
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:site', content: '@syntecxhub' },
-        { name: 'twitter:creator', content: '@syntecxhub' },
-        { name: 'twitter:title', content: 'Syntecxhub Inventory — Hardware & SKU Telemetry' },
+        { name: 'twitter:site', content: '@titanlogistics' },
+        { name: 'twitter:creator', content: '@titanlogistics' },
+        { name: 'twitter:title', content: 'Titan Logistics — Hardware & SKU Telemetry' },
         { name: 'twitter:description', content: 'Enterprise hardware inventory, stock valuation, and warehouse telemetry.' },
-        { name: 'twitter:image', content: 'https://inventory.syntecxhub.com/favicon.svg' },
+        { name: 'twitter:image', content: 'https://inventory.titantelemetry.io/favicon.svg' },
       ],
       link: [
-        { rel: 'canonical', href: 'https://inventory.syntecxhub.com/' },
+        { rel: 'canonical', href: 'https://inventory.titantelemetry.io/' },
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'alternate icon', href: '/favicon.ico' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

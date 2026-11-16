@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: syntecxhub-p2-backend
+    name: titan-logistics-backend
     runtime: node
     plan: free
     region: oregon
@@ -21,7 +21,7 @@ services:
         sync: false
 
   - type: web
-    name: syntecxhub-p2-frontend
+    name: titan-logistics-frontend
     runtime: node
     plan: free
     region: oregon

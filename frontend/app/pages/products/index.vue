@@ -626,7 +626,7 @@ const statusLabel = (status: string) => {
                 <input
                   v-model="formState.name"
                   type="text"
-                  placeholder="Syntecx Edge Gateway Pro X1"
+                  placeholder="Titan Edge Gateway Pro X1"
                   class="input-field"
                 />
                 <p v-if="formErrors.name" class="mt-1 text-xs text-rose-500">

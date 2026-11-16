@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 const BACKEND_ROOT = path.resolve(__dirname, '..');
 const PROJECT_ROOT = path.resolve(BACKEND_ROOT, '..');
 
-test('Project 2 (Syntecxhub Project 2 — Product & SKU Inventory Management) Standalone Structure & Strict TypeScript Verification', () => {
+test('Project 2 (Titan Logistics — Industrial Hardware SKU & Logistics Telemetry) Standalone Structure & Strict TypeScript Verification', () => {
   const required = [
     'backend/package.json',
     'backend/tsconfig.json',

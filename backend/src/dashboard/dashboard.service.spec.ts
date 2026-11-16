@@ -10,7 +10,7 @@ describe('DashboardService (Project 2 - Products)', () => {
     const mockProducts = [
       {
         _id: '673700000000000000000101',
-        name: 'Syntecx Edge Gateway Pro X1',
+        name: 'Titan Edge Gateway Pro X1',
         sku: 'SYN-NET-8820',
         price: 1000,
         stockQuantity: 5,

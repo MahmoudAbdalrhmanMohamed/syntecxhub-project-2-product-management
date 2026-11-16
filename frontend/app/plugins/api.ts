@@ -2,7 +2,7 @@ import type { ApiErrorPayload } from '#shared/types/api';
 
 export default defineNuxtPlugin(() => {
   const config = useRuntimeConfig();
-  const authToken = useCookie<string | null>('syntecxhub_auth_token', {
+  const authToken = useCookie<string | null>('titan_auth_token', {
     default: () => null,
     sameSite: 'lax',
   });
@@ -17,7 +17,7 @@ export default defineNuxtPlugin(() => {
       if (authToken.value) {
         headers.set('Authorization', `Bearer ${authToken.value}`);
       }
-      headers.set('X-Client-Platform', 'Syntecxhub-Nuxt4-Admin');
+      headers.set('X-Client-Platform', 'Titan-Logistics-Nuxt4');
       options.headers = headers;
     },
     onResponseError({ response }) {
@@ -29,7 +29,7 @@ export default defineNuxtPlugin(() => {
 
       if (import.meta.client) {
         console.warn(
-          `[Syntecxhub API Error ${response.status}]: ${formattedMessage}`,
+          `[Titan API Error ${response.status}]: ${formattedMessage}`,
         );
       }
     },

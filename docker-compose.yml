@@ -3,12 +3,12 @@ version: '3.9'
 services:
   mongodb:
     image: mongo:7.0
-    container_name: syntecxhub-project-2-product-management-mongodb
+    container_name: titan-logistics-mongodb
     restart: unless-stopped
     ports:
       - '27017:27017'
     environment:
-      MONGO_INITDB_DATABASE: syntecxhub_products_db
+      MONGO_INITDB_DATABASE: titan_logistics_db
     volumes:
       - mongodb_data:/data/db
     healthcheck:
@@ -21,7 +21,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: syntecxhub-project-2-product-management-backend
+    container_name: titan-logistics-backend
     restart: unless-stopped
     depends_on:
       mongodb:
@@ -31,7 +31,7 @@ services:
     environment:
       NODE_ENV: production
       PORT: 4000
-      MONGODB_URI: mongodb://mongodb:27017/syntecxhub_products_db
+      MONGODB_URI: mongodb://mongodb:27017/titan_logistics_db
       CORS_ORIGIN: http://localhost:3000
       PUBLIC_BASE_URL: http://localhost:4000
 
@@ -39,7 +39,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: syntecxhub-project-2-product-management-frontend
+    container_name: titan-logistics-frontend
     restart: unless-stopped
     depends_on:
       - backend
@@ -47,7 +47,7 @@ services:
       - '3000:3000'
     environment:
       NODE_ENV: production
-      NUXT_INTERNAL_API_SECRET: syntecxhub-internal-ssr-key
+      NUXT_INTERNAL_API_SECRET: titan-internal-ssr-key
       NUXT_PUBLIC_API_BASE_URL: http://localhost:4000/api
       NUXT_PUBLIC_BACKEND_ORIGIN: http://localhost:4000
 

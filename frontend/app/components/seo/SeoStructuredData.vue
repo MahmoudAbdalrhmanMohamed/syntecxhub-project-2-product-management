@@ -2,7 +2,7 @@
 const route = useRoute();
 const config = useRuntimeConfig();
 
-const siteUrl = 'https://inventory.syntecxhub.com';
+const siteUrl = 'https://inventory.titantelemetry.io';
 const currentUrl = computed(() => `${siteUrl}${route.path}`);
 
 const jsonLdData = computed(() => {
@@ -11,8 +11,8 @@ const jsonLdData = computed(() => {
     {
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      name: 'Syntecxhub Enterprise',
-      url: 'https://syntecxhub.com',
+      name: 'Titan Logistics Systems',
+      url: 'https://titantelemetry.io',
       logo: `${siteUrl}/favicon.svg`,
       sameAs: [
         'https://github.com/MahmoudAbdalrhmanMohamed/syntecxhub-project-2-product-management',
@@ -20,7 +20,7 @@ const jsonLdData = computed(() => {
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'technical support',
-        email: 'inventory@syntecxhub.com',
+        email: 'inventory@titantelemetry.io',
       },
     },
 
@@ -28,7 +28,7 @@ const jsonLdData = computed(() => {
     {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      name: 'Syntecxhub Inventory',
+      name: 'Titan Logistics',
       url: siteUrl,
       potentialAction: {
         '@type': 'SearchAction',
@@ -41,7 +41,7 @@ const jsonLdData = computed(() => {
     {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
-      name: 'Syntecxhub Inventory',
+      name: 'Titan Logistics',
       operatingSystem: 'Cloud / Linux / Windows / macOS',
       applicationCategory: 'BusinessApplication',
       softwareVersion: '1.0.0',
@@ -68,15 +68,15 @@ const jsonLdData = computed(() => {
       mainEntity: [
         {
           '@type': 'Question',
-          name: 'What is Syntecxhub Inventory?',
+          name: 'What is Titan Logistics?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Syntecxhub Inventory is a high-tech SKU telemetry and stock catalog management platform for enterprise hardware appliances, cloud licenses, and warehouse components.',
+            text: 'Titan Logistics is a high-tech SKU telemetry and stock catalog management platform for enterprise hardware appliances, cloud licenses, and warehouse components.',
           },
         },
         {
           '@type': 'Question',
-          name: 'How does Syntecxhub Inventory calculate total stock valuation?',
+          name: 'How does Titan Logistics calculate total stock valuation?',
           acceptedAnswer: {
             '@type': 'Answer',
             text: 'Stock valuation is aggregated in real time across the MongoDB product collection by multiplying available inventory units by unit retail price for each active SKU.',
@@ -87,12 +87,12 @@ const jsonLdData = computed(() => {
           name: 'What product categories are supported?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Syntecxhub Inventory supports Hardware, Software, Networking, Server Components, and Peripheral equipment with customizable category tags and stock thresholds.',
+            text: 'Titan Logistics supports Hardware, Software, Networking, Server Components, and Peripheral equipment with customizable category tags and stock thresholds.',
           },
         },
         {
           '@type': 'Question',
-          name: 'How can I integrate Syntecxhub Inventory with external ERP systems?',
+          name: 'How can I integrate Titan Logistics with external ERP systems?',
           acceptedAnswer: {
             '@type': 'Answer',
             text: 'External services integrate seamlessly using the RESTful OpenAPI specification documented at /api-docs with full support for pagination, search, and SKU filters.',
@@ -136,9 +136,9 @@ useHead({
 <template>
   <!-- Invisible SEO semantic container for AI answer crawlers -->
   <div aria-hidden="true" class="sr-only">
-    <h2>Syntecxhub Inventory Platform Overview</h2>
+    <h2>Titan Logistics Platform Overview</h2>
     <p>
-      Syntecxhub Inventory delivers real-time SKU telemetry, hardware catalog
+      Titan Logistics delivers real-time SKU telemetry, hardware catalog
       governance, and stock valuation across distributed warehouse clusters.
     </p>
   </div>

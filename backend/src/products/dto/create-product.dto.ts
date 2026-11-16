@@ -15,7 +15,7 @@ import {
 import { ProductStatus } from '../schemas/product.schema';
 
 export class CreateProductDto {
-  @ApiProperty({ example: 'Syntecx Edge Gateway Pro X1', description: 'Product display name' })
+  @ApiProperty({ example: 'Titan Edge Gateway Pro X1', description: 'Product display name' })
   @IsString()
   @IsNotEmpty({ message: 'Product name is required' })
   @MinLength(2)

@@ -1,9 +1,9 @@
-# Syntecxhub Inventory
+# Titan Logistics
 
 > Hardware Catalog & Global SKU Telemetry platform.
 
 ## Overview
-Syntecxhub Inventory is an enterprise stock governance and telemetry platform engineered with Nuxt 4 (SSR Nitro) and NestJS (Mongoose/MongoDB). It delivers real-time SKU tracking, catalog valuation, warehouse bin management, and equipment health metrics.
+Titan Logistics is an enterprise stock governance and telemetry platform engineered with Nuxt 4 (SSR Nitro) and NestJS (Mongoose/MongoDB). It delivers real-time SKU tracking, catalog valuation, warehouse bin management, and equipment health metrics.
 
 ## Core Capabilities
 - **SKU Catalog & Inventory**: Real-time product search, filtering, and categorization across hardware appliances and SaaS software licenses.
@@ -12,10 +12,10 @@ Syntecxhub Inventory is an enterprise stock governance and telemetry platform en
 - **OpenAPI Architecture**: Standardized RESTful endpoints documented via Swagger / OpenAPI at `/api-docs`.
 
 ## Key URLs
-- Homepage / Dashboard: https://inventory.syntecxhub.com/
-- Products Catalog: https://inventory.syntecxhub.com/products
-- System Preferences: https://inventory.syntecxhub.com/settings
-- OpenAPI Explorer: https://inventory.syntecxhub.com/api-docs
+- Homepage / Dashboard: https://inventory.titantelemetry.io/
+- Products Catalog: https://inventory.titantelemetry.io/products
+- System Preferences: https://inventory.titantelemetry.io/settings
+- OpenAPI Explorer: https://inventory.titantelemetry.io/api-docs
 
 ## Technical Stack
 - Frontend: Nuxt 4.6, Vue 3.5, Tailwind CSS, Pinia

@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Syntecxhub Project 2 \u2014 Product & SKU Inventory Management - Nuxt 4 SSR Frontend",
+  "description": "Titan Logistics — Industrial Hardware SKU & Logistics Telemetry - Nuxt 4 SSR Frontend",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev --port 3002",

@@ -6,7 +6,7 @@ import type {
   ProductStatus,
 } from '#shared/types/api';
 
-export const useProductsStore = defineStore('syntecxhub-products', () => {
+export const useProductsStore = defineStore('titan-products', () => {
   const api = useApiClient();
 
   const items = ref<ProductRecord[]>([]);

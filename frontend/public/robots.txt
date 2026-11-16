@@ -1,5 +1,5 @@
 # ==============================================================================
-# Syntecxhub Inventory — Robots Configuration
+# Titan Logistics — Robots Configuration
 # Technical SEO & Generative Engine Optimization (GEO) Directives
 # ==============================================================================
 
@@ -9,8 +9,8 @@ Disallow: /api/
 Disallow: /_nuxt/
 
 # Sitemaps for Search Engines
-Sitemap: https://inventory.syntecxhub.com/sitemap.xml
-Sitemap: https://syntecxhub-inventory.vercel.app/sitemap.xml
+Sitemap: https://inventory.titantelemetry.io/sitemap.xml
+Sitemap: https://titan-logistics.vercel.app/sitemap.xml
 
 # LLM & Generative Engine Crawlers (Explicitly Allowed for GEO)
 User-agent: GPTBot

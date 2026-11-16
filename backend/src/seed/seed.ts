@@ -7,7 +7,7 @@ import { Product, ProductDocument, ProductStatus } from '../products/schemas/pro
 
 export const SEED_PRODUCTS = [
   {
-    name: 'Syntecx Edge Gateway Pro X1',
+    name: 'Titan Edge Gateway Pro X1',
     sku: 'SYN-NET-8820',
     price: 1450.0,
     description: 'Industrial multi-WAN edge routing gateway featuring dual 10GbE SFP+ uplinks.',

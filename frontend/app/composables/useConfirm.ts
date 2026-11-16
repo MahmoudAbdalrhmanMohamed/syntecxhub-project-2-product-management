@@ -12,7 +12,7 @@ interface ConfirmModalState extends ConfirmModalOptions {
 }
 
 export const useConfirm = () => {
-  const state = useState<ConfirmModalState>('syntecxhub-confirm-modal', () => ({
+  const state = useState<ConfirmModalState>('titan-confirm-modal', () => ({
     isOpen: false,
     title: '',
     message: '',
